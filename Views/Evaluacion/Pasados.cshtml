@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewData["Title"] = "Pasados";
+}
+
+<div class="container p-4 mt-2 border col-12">
+    <div class="row">
+        <h2 class="col-9">Evaluaciones</h2>
+        <a asp-controller="Evaluacion" asp-action="Vigentes" class="btn btn-link col-1 m-2">Vigentes</a>
+        <a asp-controller="Evaluacion" asp-action="Pasados" class="btn btn-link col-1 m-2">Pasados</a>
+    </div>
+</div>
+@foreach (var periodo in ViewBag.Periodos)
+            {
+                <div>@periodo.IdEvaluacion</div>
+            }

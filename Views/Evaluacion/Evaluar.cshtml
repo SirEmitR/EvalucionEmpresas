@@ -1,0 +1,223 @@
+﻿@model EvaluacionEmpresa.Models.custom.prmEvaluar
+@{
+    ViewData["Title"] = "Evaluacion";
+
+}
+<section>
+    <form asp-action="GuardarEvaluacion" method="post">
+        <table class="w-100">
+            <th>Fecha</th>
+            <th>Proveedor</th>
+            <th>Elaboró</th>
+            <tr>
+                <input type="hidden" asp-for="IdEvaluacion" value="@ViewData["Evaluacion"]" />
+                <td>@DateTime.Now</td>
+                <input type="hidden" asp-for="Fecha" a value="@DateTime.Now" />
+                <td>@ViewData["empresa"]</td>
+                <input type="hidden" asp-for="IdEmpresa" value="@ViewData["IdEmpresa"]" />
+                <td>@ViewData["uag"]</td>
+                <input type="hidden" asp-for="IdUAG" value="@ViewData["uag"]" />
+            </tr>
+        </table>
+
+        @if (ViewBag.a != 0)
+                {
+                    var contrato = ViewBag.Contrato;
+            <table class="w-100">
+                <th>Evaluación</th>
+                <th colspan="2">Resultado</th>
+                <tr>
+                    <td><label>¿El proveedor tiene contrato?</label></td>
+                    @if (contrato.Contrato == true)
+                    {
+                        <td>Si<input type="radio" asp-for="Contrato" value="true" checked disabled /></td>
+                        <td>No<input type="radio" asp-for="Contrato" value="false" disabled /></td>
+                    }
+                    else
+                    {
+                        <td>Si<input type="radio" asp-for="Contrato" value="true" disabled/></td>
+                        <td>No<input type="radio" asp-for="Contrato" value="false" checked disabled/></td>
+                    }
+
+                </tr>
+                <tr>
+                    <td><label>¿El proveedor firmo el contrato de confidencialidad?</label></td>
+                    @if (contrato.Cconfidencialidad == true)
+                    {
+                        <td>Si<input type="radio" asp-for="CConfidencialidad" value="true" checked disabled /></td>
+                        <td>No<input type="radio" asp-for="CConfidencialidad" value="false" disabled/></td>
+                    }
+                    else
+                    {
+                        <td>Si<input type="radio" asp-for="CConfidencialidad" value="true" disabled/></td>
+                        <td>No<input type="radio" asp-for="CConfidencialidad" value="false" checked disabled /></td>
+                    }
+                </tr>
+                <tr>
+                    <td><label>¿El proveedor cumplió con las políticas y normas de seguridad de la información aplicables?</label></td>
+                    @if (contrato.PoliticasNormas == true)
+                    {
+                        <td>Si<input type="radio" asp-for="PoliticasNormas" value="true" checked disabled /></td>
+                        <td>No<input type="radio" asp-for="PoliticasNormas" value="false" disabled/></td>
+                    }
+                    else
+                    {
+                        <td>Si<input type="radio" asp-for="PoliticasNormas" value="true" disabled/></td>
+                        <td>No<input type="radio" asp-for="PoliticasNormas" value="false" checked disabled/></td>
+                    }
+
+                </tr>
+                <tr>
+                    <td><label>¿Se cumplieron los niveles de servicio acordados?</label></td>
+                    @if (contrato.NivelesServicio == true)
+                    {
+                        <td>Si<input type="radio" asp-for="NvlServicio" value="true" checked disabled/></td>
+                        <td>No<input type="radio" asp-for="NvlServicio" value="false" disabled/></td>
+                    }
+                    else
+                    {
+                        <td>Si<input type="radio" asp-for="NvlServicio" value="true" disabled/></td>
+                        <td>No<input type="radio" asp-for="NvlServicio" value="false" checked disabled/></td>
+                    }
+
+                </tr>
+                <tr>
+                    <td><label>¿Existieron incidentes de seguridad relacionados con el proveedor?</label></td>
+                    @if (contrato.Incidentes == true)
+                    {
+                        <td>Si<input type="radio" asp-for="Incidentes" value="true" checked disabled/></td>
+                        <td>No<input type="radio" asp-for="Incidentes" value="false" disabled/></td>
+                    }
+                    else
+                    {
+                        <td>Si<input type="radio" asp-for="Incidentes" value="true" disabled/></td>
+                        <td>No<input type="radio" asp-for="Incidentes" value="false" checked disabled/></td>
+                    }
+                </tr>
+            </table><table class="w-100">
+                <th>Comentarios adicionales</th>
+                <tr>
+                    <td><input type="text" asp-for="Comentarios1" class="w-100" /></td>
+                </tr>
+            </table>
+        }
+        else
+        {
+            <table class="w-100">
+                <th>Evaluación</th>
+                <th colspan="2">Resultado</th>
+                <tr>
+                    <td><label>¿El proveedor tiene contrato?</label></td>
+                    <td>Si<input type="radio" asp-for="Contrato" value="true" /></td>
+                    <td>No<input type="radio" asp-for="Contrato" value="false" /></td>
+                    <span asp-validation-for="Contrato" class="text-danger"></span>
+                </tr>
+                <tr>
+                    <td><label>¿El proveedor firmo el contrato de confidencialidad?</label></td>
+                    <td>Si<input type="radio" asp-for="CConfidencialidad" value="true" /></td>
+                    <td>No<input type="radio" asp-for="CConfidencialidad" value="false" /></td>
+                    <span asp-validation-for="CConfidencialidad" class="text-danger"></span>
+                </tr>
+                <tr>
+                    <td><label>¿El proveedor cumplió con las políticas y normas de seguridad de la información aplicables?</label></td>
+                    <td>Si<input type="radio" asp-for="PoliticasNormas" value="true" /></td>
+                    <td>No<input type="radio" asp-for="PoliticasNormas" value="false" /></td>
+                    <span asp-validation-for="PoliticasNormas" class="text-danger"></span>
+                </tr>
+                <tr>
+                    <td><label>¿Se cumplieron los niveles de servicio acordados?</label></td>
+                    <td>Si<input type="radio" asp-for="NvlServicio" value="true" /></td>
+                    <td>No<input type="radio" asp-for="NvlServicio" value="false" /></td>
+                    <span asp-validation-for="NvlServicio" class="text-danger"></span>
+                </tr>
+                <tr>
+                    <td><label>¿Existieron incidentes de seguridad relacionados con el proveedor?</label></td>
+                    <td>Si<input type="radio" asp-for="Incidentes" value="true" /></td>
+                    <td>No<input type="radio" asp-for="Incidentes" value="false" /></td>
+                    <span asp-validation-for="Incidentes" class="text-danger"></span>
+                </tr>
+            </table>
+            <table class="w-100">
+                <th>Comentarios adicionales</th>
+                <tr>
+                    <td><input type="text" asp-for="Comentarios1" class="w-100" /></td>
+                    <span asp-validation-for="Comentarios1" class="text-danger"></span>
+                </tr>
+            </table>
+        }
+
+        <table class="w-100">
+            <th>Evaluación</th>
+            <th>Excelente</th>
+            <th>Bueno</th>
+            <th>Regular</th>
+            <th>Malo</th>
+            <tr>
+                <td><label for="Especializacion">La especialización y dominio del proveedor en la tecnologia es</label></td>
+                <td><input type="radio" asp-for="Especializacion" value="100" /></td>
+                <td><input type="radio" asp-for="Especializacion" value="85" /></td>
+                <td><input type="radio" asp-for="Especializacion" value="70" /></td>
+                <td><input type="radio" asp-for="Especializacion" value="0" /></td>
+                <span asp-validation-for="Especializacion" class="text-danger"></span>
+            </tr>
+            <tr>
+                <td><label for="Solucion">La solucion entregada por el proveedor es</label></td>
+                <td><input type="radio" asp-for="Solucion" value="100" /></td>
+                <td><input type="radio" asp-for="Solucion" value="85" /></td>
+                <td><input type="radio" asp-for="Solucion" value="70" /></td>
+                <td><input type="radio" asp-for="Solucion" value="0" /></td>
+                <span asp-validation-for="Solucion" class="text-danger"></span>
+            </tr>
+            <tr>
+                <td><label for="Tecnologia">La tecnologia utilizada por el proveedor es</label></td>
+                <td><input type="radio" asp-for="Tecnologia" value="100" /></td>
+                <td><input type="radio" asp-for="Tecnologia" value="85" /></td>
+                <td><input type="radio" asp-for="Tecnologia" value="70" /></td>
+                <td><input type="radio" asp-for="Tecnologia" value="0" /></td>
+                <span asp-validation-for="Tecnologia" class="text-danger"></span>
+            </tr>
+            <tr>
+                <td><label for="AtencionSoporte">La atención y soporte del proveedor es</label></td>
+                <td><input type="radio" asp-for="AtencionSoporte" value="100" /></td>
+                <td><input type="radio" asp-for="AtencionSoporte" value="85" /></td>
+                <td><input type="radio" asp-for="AtencionSoporte" value="70" /></td>
+                <td><input type="radio" asp-for="AtencionSoporte" value="0" /></td>
+                <span asp-validation-for="AtencionSoporte" class="text-danger"></span>
+            </tr>
+            <tr>
+                <td><label for="TiempoEntrega">En tiempos de entrega es</label></td>
+                <td><input type="radio" asp-for="TiempoEntrega" value="100" /></td>
+                <td><input type="radio" asp-for="TiempoEntrega" value="85" /></td>
+                <td><input type="radio" asp-for="TiempoEntrega" value="70" /></td>
+                <td><input type="radio" asp-for="TiempoEntrega" value="0" /></td>
+                <span asp-validation-for="TiempoEntrega" class="text-danger"></span>
+            </tr>
+            <tr>
+                <td><label for="Precio">El precio del producto, servicio es</label></td>
+                <td><input type="radio" asp-for="Precio" value="100" /></td>
+                <td><input type="radio" asp-for="Precio" value="85" /></td>
+                <td><input type="radio" asp-for="Precio" value="70" /></td>
+                <td><input type="radio" asp-for="Precio" value="0" /></td>
+                <span asp-validation-for="Precio" class="text-danger"></span>
+            </tr>
+            <tr>
+                <td><label for="Calidad">La calidad del producto es</label></td>
+                <td><input type="radio" asp-for="Calidad" value="100" /></td>
+                <td><input type="radio" asp-for="Calidad" value="85" /></td>
+                <td><input type="radio" asp-for="Calidad" value="70" /></td>
+                <td><input type="radio" asp-for="Calidad" value="0" /></td>
+                <span asp-validation-for="Calidad" class="text-danger"></span>
+            </tr>
+        </table>
+        <table class="w-100">
+            <th>Comentarios adicionales</th>
+            <tr>
+                <td><input type="text" asp-for="Comentario2" class="w-100" /></td>
+                <span asp-validation-for="Comentario2" class="text-danger"></span>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Enviar evaluacion" class="btn btn-success" /></td>
+            </tr>
+        </table>
+    </form>
+</section>

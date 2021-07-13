@@ -1,0 +1,32 @@
+﻿@model EvaluacionEmpresa.Models.custom.EvaluarEmpresa
+@{
+    ViewData["Title"] = "NoEvaluadas";
+}
+<div class="container w-100 col-12">
+    @foreach (var empresa in ViewBag.NoEvaluadas)
+    {
+        if (empresa.IdEmpresa == 0)
+        {
+
+        }
+        else
+        {
+            <div class="col-3 container border">
+
+                <div class="col-12 text-center p-4">
+                    <form asp-action="Evaluar" method="get">
+                        <p>
+                            @empresa.Empresa
+                        </p>
+                        <input type="hidden" asp-for="IdEmpresa" value="@empresa.IdEmpresa" />
+                        <input type="hidden" asp-for="IdEvaluacion" value="@ViewData["IdEvaluacion"]" />
+                        <input type="hidden" asp-for="IdUAG" value="2" />
+                        <input class="btn btn-success" type="submit" value="Evaluar" />
+                    </form>
+                </div>
+            </div>
+        }
+
+    }
+</div>
+
